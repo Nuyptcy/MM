@@ -15,11 +15,14 @@
         <script  src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/jquery-ui.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script src="./app.js"></script>
+        <!-- Vue CDN -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
         <style>
-            .box{
-              color: red;
-            }
+        #app.active{
+          background-color: red;
+        }
         </style>
         <title>MM</title>
     </head>
@@ -37,13 +40,13 @@
               <li class="nav-item"><a href="#" class="nav-link">C</a></li>
             </ul>
           </div>
-        </nav>
-        <div class="container">
-            <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="formGroupExampleInput">日期</label>
+      </nav>
+      <div class="container">
+        <div class="row"> 
+              <div  class="form-group col-md-6">
+                  <label for="formGroupExampleInput">項目名稱</label>
                   <input type="text" class="form-control" id="">
-                </div>
+              </div>
                 <!--TEST-->
                 <div class="col-md-6 form-group">
                     <label>
@@ -62,7 +65,7 @@
                         </span>
                       </div>
                     </div>
-                  </div>
+                </div>
                 <!--TEST-->
                 <div class="form-group col-md-6">
                   <label for="formGroupExampleInput2">類別</label>
@@ -76,58 +79,48 @@
                   <label for="formGroupExampleInput2">方式</label>
                   <input type="text" class="form-control" id="">
                 </div>
-                  <div class="form-group col-md-6">
-                    <label for="formGroupExampleInput2">金額</label>
-                    <input type="text" class="form-control" id="">
-                  </div>
-                  <button type="button" class="btn btn-info"  text-align="center" >Button</button>
-            </div>
-            <div id="header" class="panel panel-info">
-                <div class="panel-body">
-                 <ul class="nav nav-tabs">
-                  <li class="active">
-                   <a href="#tabs" data-toggle="tab">申請人 APPLICANT</a>
-                  </li>
-                 </ul>
-                 <div class="form-row">
-                  <div class="tab-content tab-content-bordered">
-                   <div class="tab-pane fade in active" id="tabs-Home">
-                    <div class="col-md-6 form-group">
-                     <label>Name 申請人</label>
-                     <div setborder="head" class="input-group">
-                      <select name="tApplicantID" id="tApplicantID" class="form-control col-md-6 hide-input" validation="Required" placeholder="申請人" readonly="" disabled=""><option value="newtypeadmin" data="{&quot;Division&quot;:&quot;Sony Taiwan                                       &quot;,&quot;Title&quot;:null,&quot;Phone&quot;:null,&quot;Email&quot;:&quot;newtypeadmin@newtype.com.tw&quot;,&quot;GlobalID&quot;:&quot;newtypeadmin&quot;,&quot;MemberName&quot;:&quot;newtypeadmin&quot;,&quot;DeptID&quot;:&quot;W000&quot;,&quot;DeptName&quot;:&quot;Sony Taiwan&quot;}">newtypeadmin</option></select>
-                      <span class="input-group-btn">
-                       <button id="MemberInfo" type="button" class="btn btn-info" disabled=""><b>Info</b></button>
-                      </span>
-                     </div>
-                    </div> 
-                    <div class="col-md-6 form-group">
-                     <label>Div/Dept 申請人部門</label>
-                     <div setborder="head" class="">
-                      <select name="tApplicantDept" id="tApplicantDept" class="form-control hide-input" validation="Required" readonly="" disabled=""><option value="W000">Sony Taiwan</option></select>
-                     </div>
-                    </div>
-                   </div>
-                  </div>
-                 </div>
+                <div class="form-group col-md-6">
+                  <label for="formGroupExampleInput2">金額</label>
+                  <input type="text" class="form-control" id="">
                 </div>
-               </div>
-              
-              
-        </div>
-        
-        <script type="text/javascript">
-      /*
-      if(jQuery){
-        alert("success");
-      }
-      */
-      if(Bootstrap){
-        alert("Bt also success")
-      }
-      else{
-        alert(failed);
-      }
+                  <button type="button" class="btn btn-info"  text-align="center" >Button</button>
+        </div>          
+      </div>
+          <div id="app" :class="{active:isActive}">
+            <a v-bind:href="link.href" v-bind:target="link.target">{{link.content}}</a>
+            <input v-bind:type="input.type"/> 
+            <div v-bind:class="classContent">test</div>
+              <div class="panel-body">
+                <br/>
+    
+          </div>
+            
+            
+      </div>
+        <script>
+          var vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                  isActive: true,
+                  link:{
+                    href:"https://www.google.com",
+                    target:'_blank',
+                    content:'google',
+                  },
+                  input:{
+                    type:"text",
+                  },
+                  classContent:{
+                    aaa:true,
+                    bbb:true,
+                    ccc:true,
+                  },
+                }
+            },
+          
+          })
+    
         </script>
     </body>
 </html>
